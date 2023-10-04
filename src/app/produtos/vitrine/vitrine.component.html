@@ -1,0 +1,65 @@
+<div class="vitrine-container">
+
+  <div class="top-area centralized-content">
+    <div class="logo centralized-content">
+      <img src='https://iguatemi.com.br/patiohigienopolis/sites/patiohigienopolis/files/logo-1360262794033.png' alt="Imagem do logo">
+    </div>
+    <div class="search centralized-content">
+      <div class="search-bar">
+        <mat-card >
+          <mat-card-content>
+        <input type="text" class="search-input" placeholder="Digite sua pesquisa">
+        <button mat-raised-button color="primary">Pesquisar</button>
+      </mat-card-content>
+
+          </mat-card>
+      </div>
+    </div>
+    <div class="account-logo centralized-content">
+      <img src='https://cdn.icon-icons.com/icons2/2550/PNG/512/user_circle_icon_152504.png' alt="Imagem do logo">
+    </div>
+  </div>
+
+  <div class="menu-display centralized-content">
+    <mat-toolbar color="primary">
+      <span>Menu</span>
+    </mat-toolbar>
+  </div>
+  
+  <div class="products-display centralized-content">
+    <mat-grid-list cols="3" rowHeight="1:1">
+      <div *ngIf="produtos$ | async as produtos; else loading">
+        <div *ngFor="let produto of produtos">
+          <mat-grid-tile>
+            <mat-card>
+              <mat-card-content>
+                <div class="product-image">
+                  <img [src]="produto.urlImagem" alt="Imagem do Produto">
+                </div>
+                <div class="product-info">
+                  <div class="product-description">
+                    <h2>{{ produto.nome }}</h2>
+                    <p>{{ produto.descricao }}</p>
+                    <p>{{ produto.preco | currency:'BRL' }}</p>
+                  </div>
+                  <div class="buy-button">
+                    <button mat-raised-button color="primary">Comprar</button>
+                  </div>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </mat-grid-tile>
+
+        </div>
+      </div>
+
+      <ng-template #loading>
+        <div class="loading-spinner">
+          <mat-spinner></mat-spinner>
+        </div>
+      </ng-template>
+  
+    </mat-grid-list>
+  </div>
+</div>
+  
